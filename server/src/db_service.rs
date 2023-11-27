@@ -5,10 +5,12 @@ use crate::db_food::Food;
 
 pub trait DBAdapter {
     fn start(&mut self);
-    fn get_registered_foods(&mut self);
+    fn get_all_foods(&mut self);
     fn get_food_by_id(&mut self);
     fn get_foods_by_name(&mut self);
-    fn get_registered_recipes(&mut self);
+    fn get_all_recipes(&mut self);
+    fn get_recipe_by_id(&mut self, id: i32);
+    fn get_recipe_by_uuid(&mut self, uuid: String);
 }
 
 pub struct SqliteAdapter { 
@@ -33,13 +35,13 @@ impl DBAdapter for SqliteAdapter {
                     Err(err) => println!("Error while executing script: {}", err.to_string())
                 }
 
-                self.get_registered_foods();
+                self.get_all_foods();
             },
             Err(error) => println!("Error while reading sql scripts: {}", error)
         }
     }
 
-    fn get_registered_foods(&mut self) {
+    fn get_all_foods(&mut self) {
         let mut statement = self.conn.prepare("SELECT id, uuid, name, protein, carbs, fat FROM food").unwrap();
         let foods_iter = statement.query_map([], |row| {
             Ok(Food {
@@ -65,9 +67,31 @@ impl DBAdapter for SqliteAdapter {
         todo!()
     }
 
-    fn get_registered_recipes(&mut self) {
+    fn get_all_recipes(&mut self) {
+        let mut statement = self.conn.prepare(
+            "SELECT id, uuid, name, protein, carbs, fat FROM food"
+        ).unwrap();
+
+        let recipes_iter = statement.query_map([], |row| {
+            Ok(Food {
+                id: row.get(0).unwrap(),
+                uuid: row.get(1).unwrap(),
+                name: row.get(2).unwrap(),
+                protein: row.get(3).unwrap(),
+                carbs: row.get(4).unwrap(),
+                fat: row.get(5).unwrap(),
+            })
+        }).unwrap();
+    }
+
+    fn get_recipe_by_id(&mut self, id: i32) {
         todo!()
     }
+
+    fn get_recipe_by_uuid(&mut self, uuid: String) {
+        todo!()
+    }
+
 }
 
 fn read_file_text(path: &str) -> Result<String, Error> {
