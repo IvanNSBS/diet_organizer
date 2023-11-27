@@ -1,5 +1,5 @@
 use rusqlite::{Connection, Result, Params};
-use std::{fs, path::{Path, PathBuf}, io::Error, io::ErrorKind, env};
+use std::{fs, path::Path, io::Error, io::ErrorKind};
 
 use crate::db_food::Food;
 
@@ -8,6 +8,7 @@ pub trait DBAdapter {
     fn get_registered_foods(&mut self);
     fn get_food_by_id(&mut self);
     fn get_foods_by_name(&mut self);
+    fn get_registered_recipes(&mut self);
 }
 
 pub struct SqliteAdapter { 
@@ -51,9 +52,8 @@ impl DBAdapter for SqliteAdapter {
             })
         }).unwrap();
 
-        println!("AUISDGASYUDASY");
         for food in foods_iter {
-            println!("Food: {:?}", food.unwrap());
+            println!("{:?}", food.unwrap());
         }
     }
 
@@ -62,6 +62,10 @@ impl DBAdapter for SqliteAdapter {
     }
 
     fn get_foods_by_name(&mut self) {
+        todo!()
+    }
+
+    fn get_registered_recipes(&mut self) {
         todo!()
     }
 }

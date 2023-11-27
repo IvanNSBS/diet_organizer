@@ -63,11 +63,17 @@ INSERT INTO food (id, uuid, carbs, protein, fat, fiber, unit_type, name) VALUES
 (12 ,'95dc15ab-0768-4f34-92e5-466f2cdbaf5f', 8, 6, 1.5, 70, 'G', 'psyllium'),
 (13 ,'9e800530-084e-46c4-92a4-c3a109a4783b', 0, 23, 8.7, 0, 'G', 'bisteca suina'),
 (14 ,'012fe956-e046-419c-a09a-18f1a4697f0c', 0, 27, 14, 0, 'G', 'lombo suino'),
-(15 ,'9a0b4e6a-4b87-4706-a186-547b4f156fcf', 22, 4, 2, 0.8, 'G', 'iogurte activia');
+(15 ,'9a0b4e6a-4b87-4706-a186-547b4f156fcf', 22, 4, 2, 0.8, 'G', 'iogurte activia'),
+(16 ,'789f5ccd-1a20-44db-9bb5-0ef9ab726992', 3, 12, 26, 0.0, 'G', 'requeijao'),
+(17 ,'fd8cf32e-e20a-4d48-812d-86d1b5fe3717', 0, 21.3, 15.3, 0.0, 'G', 'charque(ponta de agulha)'),
+(18 ,'81f579b1-1ba4-4c23-ae56-060a525cb454', 0.7, 24.5, 30.3, 0.0, 'G', 'queijo coalho');
+(19 ,'0391975f-43e9-46f0-b7b6-90487f77311c', 80, 7.2, 1.6, 2.8, 'G', 'cuscuz(cru)');
 
 INSERT INTO recipe (id, uuid, name) VALUES
-(0, 'iuz-x09cijxzmlckzxmnlckmz', 'sanduiche natural');
+(0, '1a5e23a2-3281-49c3-b98d-357708ff4c7a', 'sanduiche natural');
 
 INSERT INTO rel_recipe_food (recipe_id, food_id, food_amount) VALUES
 (0, 0, 1),
-(0, 6, 50);
+(0, 6, 50),
+(0, 16, 25),
+(0, 17, 25);
