@@ -23,38 +23,37 @@ impl SqliteAdapter {
 
 impl DBAdapter for SqliteAdapter {
     fn start(&mut self) {
-        let file = read_file_text("sql\\init_db.sql");
+        let file = read_file_text("sql_scripts\\init_db.sql");
         match file {
             Ok(content) => {
-                println!("File content:\n{}", content);
                 let r = self.conn.execute_batch(&content);
                 match r {
                     Ok(s) => println!("Script executed!"),
                     Err(err) => println!("Error while executing script: {}", err.to_string())
                 }
 
-                let mut statement = self.conn.prepare("SELECT name, protein, carbs, fat FROM food").unwrap();
-                let foods_iter = statement.query_map([], |row| {
-                    Ok(Food {
-                        id: "asdad".to_string(),
-                        name: row.get(0).unwrap(),
-                        protein: row.get(1).unwrap(),
-                        carbs: row.get(2).unwrap(),
-                        fat: row.get(3).unwrap(),
-                    })
-                }).unwrap();
-
-                println!("AUISDGASYUDASY");
-                for food in foods_iter {
-                    println!("Food: {:?}", food.unwrap());
-                }
+                self.get_registered_foods();
             },
             Err(error) => println!("Error while reading sql scripts: {}", error)
         }
     }
 
     fn get_registered_foods(&mut self) {
-        todo!()
+        let mut statement = self.conn.prepare("SELECT id, name, protein, carbs, fat FROM food").unwrap();
+        let foods_iter = statement.query_map([], |row| {
+            Ok(Food {
+                id: row.get(0).unwrap(),
+                name: row.get(1).unwrap(),
+                protein: row.get(2).unwrap(),
+                carbs: row.get(3).unwrap(),
+                fat: row.get(4).unwrap(),
+            })
+        }).unwrap();
+
+        println!("AUISDGASYUDASY");
+        for food in foods_iter {
+            println!("Food: {:?}", food.unwrap());
+        }
     }
 
     fn get_food_by_id(&mut self) {
