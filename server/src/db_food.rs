@@ -7,7 +7,8 @@ const MAX_FOODS_PER_MEAL:  usize = 10;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Food {
-    pub id: String,
+    pub id: i32,
+    pub uuid: String,
     pub name: String,
     pub protein: f32,    
     pub carbs: f32,    

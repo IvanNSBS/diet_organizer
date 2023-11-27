@@ -39,14 +39,15 @@ impl DBAdapter for SqliteAdapter {
     }
 
     fn get_registered_foods(&mut self) {
-        let mut statement = self.conn.prepare("SELECT id, name, protein, carbs, fat FROM food").unwrap();
+        let mut statement = self.conn.prepare("SELECT id, uuid, name, protein, carbs, fat FROM food").unwrap();
         let foods_iter = statement.query_map([], |row| {
             Ok(Food {
                 id: row.get(0).unwrap(),
-                name: row.get(1).unwrap(),
-                protein: row.get(2).unwrap(),
-                carbs: row.get(3).unwrap(),
-                fat: row.get(4).unwrap(),
+                uuid: row.get(1).unwrap(),
+                name: row.get(2).unwrap(),
+                protein: row.get(3).unwrap(),
+                carbs: row.get(4).unwrap(),
+                fat: row.get(5).unwrap(),
             })
         }).unwrap();
 
