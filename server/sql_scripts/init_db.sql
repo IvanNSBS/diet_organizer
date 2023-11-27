@@ -8,40 +8,40 @@ CREATE TABLE food (
     unit_type CHAR(1)
 );
 
--- CREATE TABLE recipe (
---     id VARCHAR(128) PRIMARY KEY,
---     name VARCHAR(256) NOT NULL,
--- );
+CREATE TABLE recipe (
+    id VARCHAR(128) PRIMARY KEY,
+    name VARCHAR(256) NOT NULL
+);
 
--- CREATE TABLE rel_recipe_food (
---     food_id VARCHAR(128),
---     recipe_id VARCHAR(128),
---     CONSTRAINT fk_food FOREIGN KEY (food_id) REFERENCES food(id),
---     CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id),
---     UNIQUE(food_id, recipe_id)
--- );
+CREATE TABLE rel_recipe_food (
+    food_id VARCHAR(128),
+    recipe_id VARCHAR(128),
+    CONSTRAINT fk_food FOREIGN KEY (food_id) REFERENCES food(id),
+    CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+    UNIQUE(food_id, recipe_id)
+);
 
--- CREATE TABLE eating_day (
---     day INTEGER PRIMARY KEY,
--- );
+CREATE TABLE eating_day (
+    day INTEGER PRIMARY KEY
+);
 
--- CREATE TABLE meal (
---     id VARCHAR(128) PRIMARY KEY,
---     meal_number INTEGER,
---     eating_day INTEGER,
---     CONSTRAINT fk_eating_day FOREIGN KEY(eating_day) REFERENCES eating_day(day)
--- );
+CREATE TABLE meal (
+    id VARCHAR(128) PRIMARY KEY,
+    meal_number INTEGER,
+    eating_day INTEGER,
+    CONSTRAINT fk_eating_day FOREIGN KEY(eating_day) REFERENCES eating_day(day)
+);
 
--- CREATE TABLE rel_meal_food_recipes(
---     meal_id VARCHAR(128),
---     food_id VARCHAR(128),
---     recipe_id VARCHAR(128),
+CREATE TABLE rel_meal_food_recipes(
+    meal_id VARCHAR(128),
+    food_id VARCHAR(128),
+    recipe_id VARCHAR(128),
 
---     CONSTRAINT fk_meal FOREIGN KEY (meal_id) REFERENCES meal(id),
---     CONSTRAINT fk_food FOREIGN KEY (food_id) REFERENCES food(id),
---     CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id),
---     UNIQUE(meal_id, food_id, recipe_id)
--- );
+    CONSTRAINT fk_meal FOREIGN KEY (meal_id) REFERENCES meal(id),
+    CONSTRAINT fk_food FOREIGN KEY (food_id) REFERENCES food(id),
+    CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+    UNIQUE(meal_id, food_id, recipe_id)
+);
 
 INSERT INTO food (id, carbs, protein, fat, fiber, unit_type, name) VALUES 
 ('d7b936a5-2f87-459f-b4c5-7296211bc7c2', 0, 6, 5, 0, 'U', 'ovo'),
@@ -60,5 +60,3 @@ INSERT INTO food (id, carbs, protein, fat, fiber, unit_type, name) VALUES
 ('9e800530-084e-46c4-92a4-c3a109a4783b', 0, 23, 8.7, 0, 'G', 'bisteca suina'),
 ('012fe956-e046-419c-a09a-18f1a4697f0c', 0, 27, 14, 0, 'G', 'lombo suino'),
 ('9a0b4e6a-4b87-4706-a186-547b4f156fcf', 22, 4, 2, 0.8, 'G', 'iogurte activia');
-
--- INSERT INTO recipe 
