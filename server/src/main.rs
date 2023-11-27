@@ -1,3 +1,6 @@
+mod db_food;
+mod db_service;
+
 use axum::{
     routing::{get, post},
     http::StatusCode,
@@ -7,11 +10,15 @@ use axum::{
 use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
 
-mod db_food;
+use crate::db_service::{SqliteAdapter, DBAdapter};
 
 #[tokio::main]
 async fn main() {
     // initialize tracing
+
+    let mut db_conn = SqliteAdapter::new();
+    db_conn.start();
+
     tracing_subscriber::fmt::init();
 
     // build our application with a route
