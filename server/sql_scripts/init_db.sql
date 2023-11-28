@@ -66,14 +66,19 @@ INSERT INTO food (id, uuid, carbs, protein, fat, fiber, unit_type, name) VALUES
 (15 ,'9a0b4e6a-4b87-4706-a186-547b4f156fcf', 22, 4, 2, 0.8, 'G', 'iogurte activia'),
 (16 ,'789f5ccd-1a20-44db-9bb5-0ef9ab726992', 3, 12, 26, 0.0, 'G', 'requeijao'),
 (17 ,'fd8cf32e-e20a-4d48-812d-86d1b5fe3717', 0, 21.3, 15.3, 0.0, 'G', 'charque(ponta de agulha)'),
-(18 ,'81f579b1-1ba4-4c23-ae56-060a525cb454', 0.7, 24.5, 30.3, 0.0, 'G', 'queijo coalho');
+(18 ,'81f579b1-1ba4-4c23-ae56-060a525cb454', 0.7, 24.5, 30.3, 0.0, 'G', 'queijo coalho'),
 (19 ,'0391975f-43e9-46f0-b7b6-90487f77311c', 80, 7.2, 1.6, 2.8, 'G', 'cuscuz(cru)');
 
 INSERT INTO recipe (id, uuid, name) VALUES
 (0, '1a5e23a2-3281-49c3-b98d-357708ff4c7a', 'sanduiche natural');
-
 INSERT INTO rel_recipe_food (recipe_id, food_id, food_amount) VALUES
 (0, 0, 1),
 (0, 6, 50),
 (0, 16, 25),
 (0, 17, 25);
+
+INSERT INTO recipe (uuid, name) VALUES ('zxmcn,zxjkcyzx789iu', 'milkshake proteico');
+INSERT INTO rel_recipe_food (recipe_id, food_id, food_amount) VALUES 
+(1, 1, 1.5),
+(1, 11, 30),
+(1, 8, 150);
