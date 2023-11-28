@@ -74,7 +74,7 @@ impl DBAdapter for SqliteAdapter {
 
     fn get_recipe_by_id(&mut self, id: i32) -> Result<Recipe, ()> {
         let mut statement = self.conn.prepare(
-            "SELECT 
+        "SELECT 
                 recipe.id as r_id, 
                 recipe.uuid as r_uuid, 
                 recipe.name as r_name, 
