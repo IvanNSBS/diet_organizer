@@ -21,6 +21,8 @@ async fn main() {
     let mut db_conn = SqliteAdapter::new();
     db_conn.start();
 
+    println!("{:?}", db_conn.get_food_by_id(2));
+
     let server = WebServer;
     server.start(3000, "127.0.0.1").await;
 }
